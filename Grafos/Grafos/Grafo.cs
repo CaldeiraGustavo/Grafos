@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grafos
 {
-    public abstract class Grafo
+    public class Grafo
     {       
         private List<Vertice> vertices;
 

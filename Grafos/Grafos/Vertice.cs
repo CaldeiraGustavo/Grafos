@@ -17,7 +17,7 @@ namespace Grafos
             this.cor = "BRANCO";
         }
 
-        public void addVertice (Vertice vertice, int peso)
+        public void AddVerticeAdjacente (Vertice vertice, int peso)
         {            
             adjacentes.Add(vertice, peso);                     
         }
