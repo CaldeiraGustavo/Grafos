@@ -14,35 +14,50 @@ namespace Grafos
             String s;
             String[] aux;
 
-            StreamReader arquivoGrafo;
-
-            Grafo grafo = new Grafo();
+            StreamReader arquivoGrafo;            
 
             try
             {
                 arquivoGrafo = new StreamReader(nomeArquivo);
 
                 int qtdVertices = int.Parse(arquivoGrafo.ReadLine());
+                int vAtual = 0;
                 s = arquivoGrafo.ReadLine();
+                
+                Vertice[] vertices = new Vertice[qtdVertices];
 
-                Vertice verticeX;
-                Vertice verticeY;
+                int verticeX;
+                int verticeY;
 
-                for (int i = 0; i < qtdVertices; i++)
+                while (s != null)
                 {
                     aux = s.Split(';');
+                    
+                    verticeX = int.Parse(aux[0]) - 1;
+                    verticeY = int.Parse(aux[1]) - 1;
+                    
+                    if (vertices[verticeX] == null) {
+                        
+                        vertices[verticeX] = new Vertice(verticeX);                    
+                    }
+                    
+                    if (vertices[verticeY] == null) {
+                        
+                        vertices[verticeY] = new Vertice(verticeY);                    
+                    }      
 
-                    verticeX = new Vertice(int.Parse(aux[0]));
-                    verticeY = new Vertice(int.Parse(aux[1]));
-
-                    verticeX.AddVerticeAdjacente(verticeY, int.Parse(aux[2]));
-                    verticeY.AddVerticeAdjacente(verticeX, int.Parse(aux[2]));
-
-                    grafo.addVertice(verticeX);
+                    vertices[verticeX].AddVerticeAdjacente(vertices[verticeY], int.Parse(aux[2]));
+                    vertices[verticeY].AddVerticeAdjacente(vertices[verticeX], int.Parse(aux[2]));
+                    
+                    s = arquivoGrafo.ReadLine();
 
                 }
+                
+                Grafo grafo = new Grafo(vertices);
 
                 arquivoGrafo.Close();
+                
+                return grafo;
 
             }
 
@@ -56,7 +71,7 @@ namespace Grafos
                 throw ex;
             }
 
-            return grafo;
+            return null;
         }
     }
 }
