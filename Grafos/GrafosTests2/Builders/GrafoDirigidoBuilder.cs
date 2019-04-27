@@ -18,19 +18,19 @@ namespace GrafosTests2
 
         public GrafoDirigidoBuilder GrafoComCiclo()
         {
-            this.grafo = LeituraArquivo.GrafoDirigido(@"C:\Temp\Grafos\Dirigido\ComCiclo.txt");
+            this.grafo = LeituraArquivo.GrafoDirigido(@"..\..\txts\Dirigido\ComCiclo.txt");
             return this;
         }
 
         public GrafoDirigidoBuilder GrafoSemCiclo()
         {
-            this.grafo = LeituraArquivo.GrafoDirigido(@"C:\Temp\Grafos\Dirigido\SemCiclo.txt");
+            this.grafo = LeituraArquivo.GrafoDirigido(@"..\..\txts\Dirigido\SemCiclo.txt");
             return this;
         }
 
         public GrafoDirigidoBuilder GrafoComum()
         {
-            this.grafo = LeituraArquivo.GrafoDirigido(@"C:\Temp\Grafos\Dirigido\ComCiclo.txt");
+            this.grafo = LeituraArquivo.GrafoDirigido(@"..\..\txts\Dirigido\ComCiclo.txt");
             return this;
         }
 
