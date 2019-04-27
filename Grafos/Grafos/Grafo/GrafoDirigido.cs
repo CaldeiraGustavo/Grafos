@@ -35,6 +35,7 @@ namespace Grafos
         {
             return v1.adjacentes.Count();
         }
+
         public bool hasCiclo()
         {
             this.LimparCorVertices();

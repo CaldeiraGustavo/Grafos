@@ -12,10 +12,22 @@ namespace Grafos
         {
 
         }
+
         public bool isAdjacente(Vertice v1, Vertice v2)
         {
+            foreach (Vertice vertice in vertices)
+            {
+                if (vertice == v1)
+                {
+                    foreach (Aresta a in v1.adjacentes)
+                    {
+                        if (a.vertice == v2) { return true; }
+                    }
+                }
+            }
             return false;
         }
+
 
         public int getGrau(Vertice v1)
         {
@@ -24,22 +36,35 @@ namespace Grafos
 
         public bool isIsolado(Vertice v1)
         {
+            if (v1.adjacentes.Count() == 0) { return true; }
             return false;
         }
 
         public bool isPendente(Vertice v1)
         {
+            if (v1.adjacentes.Count() == 1) { return true; }
             return false;
         }
 
+        // Vertice Regular -> Todos os vétices tem o mesmo grau
         public bool isRegular()
         {
-            return false;
+            int grau = vertices[0].adjacentes.Count();
+
+            foreach (Vertice vertice in vertices)
+            {
+                if (grau != vertice.adjacentes.Count()) { return false; }
+            }
+            return true;
         }
 
         public bool isNulo()
         {
-            return false;
+            foreach (Vertice vertice in vertices)
+            {
+                if (vertice.adjacentes.Count() != 0) { return false; }
+            }
+            return true;
         }
 
         public bool isCompleto()
