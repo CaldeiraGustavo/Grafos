@@ -12,13 +12,56 @@ namespace GrafosTests2
     public class GrafoDirigidoTests
     {
         [TestMethod()]
-        public void isEulerianoTest()
+        public void hasCicloTest()
         {
             GrafoDirigido grafo = new GrafoDirigidoBuilder()
                 .GrafoComCiclo()
                 .Build();
 
-            Assert.Equals(grafo.hasCiclo(), true);
+            Assert.AreEqual(grafo.hasCiclo(), true);
+        }
+
+        [TestMethod()]
+        public void hasNotCicloTest()
+        {
+            GrafoDirigido grafo = new GrafoDirigidoBuilder()
+                .GrafoSemCiclo()
+                .Build();
+
+            Assert.AreEqual(grafo.hasCiclo(), false);
+        }
+
+        [TestMethod()]
+        public void getGrauEntradaTest()
+        {
+            GrafoDirigido grafo = new GrafoDirigidoBuilder()
+                .GrafoComum()
+                .Build();
+
+            Vertice v1 = grafo.vertices[0];
+            Vertice v2 = grafo.vertices[1];
+            Vertice v3 = grafo.vertices[2];
+
+            Assert.AreEqual(grafo.getGrauEntrada(v1), 1);
+            Assert.AreEqual(grafo.getGrauEntrada(v2), 2);
+            Assert.AreEqual(grafo.getGrauEntrada(v3), 1);
+        }
+
+        [TestMethod()]
+        public void getGrauSaidaTest()
+        {
+            GrafoDirigido grafo = new GrafoDirigidoBuilder()
+                .GrafoComum()
+                .Build();
+
+            Vertice v1 = grafo.vertices[0];
+            Vertice v2 = grafo.vertices[1];
+            Vertice v3 = grafo.vertices[2];
+
+            Assert.AreEqual(grafo.getGrauSaida(v1), 2);
+            Assert.AreEqual(grafo.getGrauSaida(v2), 1);
+            Assert.AreEqual(grafo.getGrauSaida(v3), 1);
+
         }
 
     }

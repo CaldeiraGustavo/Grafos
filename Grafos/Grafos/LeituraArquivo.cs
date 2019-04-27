@@ -37,12 +37,12 @@ namespace Grafos
 
                     if (vertices[verticeX] == null)
                     {
-                        vertices[verticeX] = new Vertice(verticeX +1);
+                        vertices[verticeX] = new Vertice(verticeX + 1);
                     }
 
                     if (vertices[verticeY] == null)
                     {
-                        vertices[verticeY] = new Vertice(verticeY +1);
+                        vertices[verticeY] = new Vertice(verticeY + 1);
                     }
 
                     vertices[verticeX].AddVerticeAdjacente(vertices[verticeY], int.Parse(aux[2]));
@@ -52,7 +52,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new GrafoNaoDirigido(vertices);
+                Grafo grafo = new GrafoNaoDirigido(VerticesPendentes(vertices));
 
                 arquivoGrafo.Close();
 
@@ -70,6 +70,21 @@ namespace Grafos
                 throw ex;
             }
 
+        }
+
+        //Metodo para verificar se não existem vertices pendentes, que não se ligam a nenhum outro
+        //Porém precisam ser incluido no vetor de vertices do grafo
+        private static Vertice[] VerticesPendentes(Vertice[] vertices)
+        {
+            for(int i = 0; i < vertices.Length; i++)
+            {
+                if (vertices[i] == null)
+                {
+                    vertices[i] = new Vertice(i + 1);
+                }
+            }
+
+            return vertices;
         }
 
         public static Grafo GrafoDirigido(String nomeArquivo)
@@ -101,13 +116,13 @@ namespace Grafos
                     if (vertices[verticeX] == null)
                     {
 
-                        vertices[verticeX] = new Vertice(verticeX);
+                        vertices[verticeX] = new Vertice(verticeX + 1);
                     }
 
                     if (vertices[verticeY] == null)
                     {
 
-                        vertices[verticeY] = new Vertice(verticeY);
+                        vertices[verticeY] = new Vertice(verticeY + 1);
                     }
 
                     int adjacencia = int.Parse(aux[3]);
@@ -125,7 +140,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new GrafoDirigido(vertices);
+                Grafo grafo = new GrafoDirigido(VerticesPendentes(vertices));
 
                 arquivoGrafo.Close();
 

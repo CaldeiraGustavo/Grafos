@@ -66,7 +66,7 @@ namespace Grafos
             {
                 if (aresta.vertice.cor == "BRANCO")
                 {
-                    hasArestaRetorno(vertice);
+                    hasArestaRetorno(aresta.vertice);
                 }
 
                 //Achou uma aresta de retorno, significando que o grafo tem um ciclo

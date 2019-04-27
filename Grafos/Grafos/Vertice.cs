@@ -22,9 +22,21 @@ namespace Grafos
             adjacentes.Add(new Aresta(vertice, peso));
         }
 
+        public void RemoveVerticeAdjacente(int id)
+        {
+            Aresta arestaRetirar = null;
 
+            foreach (var aresta in adjacentes)
+            {
+                if (aresta.vertice.id == id)
+                {
+                    arestaRetirar = aresta;
+                    break;
+                }
+            }
 
-
+            adjacentes.Remove(arestaRetirar);
+        }
 
     }
 }

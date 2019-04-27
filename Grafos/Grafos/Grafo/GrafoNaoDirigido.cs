@@ -19,7 +19,7 @@ namespace Grafos
 
         public int getGrau(Vertice v1)
         {
-            return 0;
+            return v1.adjacentes.Count();
         }
 
         public bool isIsolado(Vertice v1)
@@ -42,7 +42,6 @@ namespace Grafos
             return false;
         }
 
-        //Sarah
         public bool isCompleto()
         {
             int numeroVertices = vertices.Count();
@@ -58,10 +57,9 @@ namespace Grafos
             return true;
         }
 
-        //Sarah
         public bool isConexo()
         {
-            int componentes = 1;
+            int componentes = 0;
 
             this.LimparCorVertices();
 
@@ -87,14 +85,13 @@ namespace Grafos
             {
                 if (aresta.vertice.cor == "BRANCO")
                 {
-                    VisitarDFS(vertice);
+                    VisitarDFS(aresta.vertice);
                 }
             }
 
             vertice.cor = "PRETO";
         }
 
-        //Sarah
         public bool isEuleriano()
         {
             //Um grafo que não é conexo não pode ser Euleriano
@@ -117,7 +114,6 @@ namespace Grafos
 
         }
 
-        //Sarah
         public bool isUnicursal()
         {
             //Um grafo que não é conexo não pode ser Unicursal
@@ -145,22 +141,49 @@ namespace Grafos
             else { return false; }
         }
 
-        //Sarah
         public Grafo getComplementar()
-        {            
+        {
+            //Gera um grafo completo
+            Grafo grafoComplementar = this.GerarGrafoCompleto();
 
-            Vertice[] verticesGrafoComplementar = new Vertice[NumeroVertices()];
+            //Percorre todos os vertices e retira do grafo completo as arestas que existem no grafo original,
+            //Resultando em seu grafo complementar.
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                foreach (var aresta in vertices[i].adjacentes)
+                {
+                    grafoComplementar.vertices[i].RemoveVerticeAdjacente(aresta.vertice.id);
+                }
+            }
 
-            return null;
-
+            return grafoComplementar;
         }
 
         private Grafo GerarGrafoCompleto()
         {
-            return null;
+            Vertice[] verts = new Vertice[NumeroVertices()];
+
+            for (int i = 0; i < verts.Length; i++)
+            {
+                verts[i] = new Vertice(i + 1);
+            }
+
+            for (int i = 0; i < verts.Length; i++)
+            {
+                for (int j = 0; j < verts.Length; j++)
+                {
+                    if (i != j)
+                    {
+                        verts[i].AddVerticeAdjacente(verts[j], 1);
+                    }
+                }
+
+            }
+
+            return new GrafoNaoDirigido(verts);
         }
 
-        //Sarah
+        //Aguardando a disponibilação do slide
         public Grafo getAGMPrim(Vertice v1)
         {
             return null;
@@ -174,6 +197,7 @@ namespace Grafos
         public int getCutVertices()
         {
             return 0;
-        }
+        }        
+
     }
 }

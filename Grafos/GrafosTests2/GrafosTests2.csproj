@@ -51,11 +51,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GrafoDirigidoBuilder.cs" />
-    <Compile Include="GrafoNaoDirigidoBuilder.cs" />
+    <Compile Include="Builders\GrafoDirigidoBuilder.cs" />
+    <Compile Include="Builders\GrafoNaoDirigidoBuilder.cs" />
     <Compile Include="GrafoDirigidoTests.cs" />
+    <Compile Include="GrafoNaoDirigidoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VerticeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Grafos\Grafos.csproj">
