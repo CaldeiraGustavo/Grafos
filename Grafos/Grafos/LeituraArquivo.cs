@@ -52,7 +52,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new Grafo(vertices);
+                Grafo grafo = new GrafoNaoDirigido(vertices);
 
                 arquivoGrafo.Close();
 
@@ -125,7 +125,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new Grafo(vertices);
+                Grafo grafo = new GrafoDirigido(vertices);
 
                 arquivoGrafo.Close();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grafos
 {
-    class GrafoDirigido : Grafo
+    public class GrafoDirigido : Grafo
     {
         public GrafoDirigido(Vertice[] vertices) : base(vertices)
         {

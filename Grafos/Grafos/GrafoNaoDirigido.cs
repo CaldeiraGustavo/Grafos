@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grafos
 {
-    class GrafoNaoDirigido : Grafo
+    public class GrafoNaoDirigido : Grafo
     {
         public GrafoNaoDirigido(Vertice[] vertices) : base(vertices)
         {
@@ -94,39 +94,6 @@ namespace Grafos
             vertice.cor = "PRETO";
         }
 
-        //Metodo Visitar da busca em profundidade, procurando por uma aresta de retorno.
-        protected bool hasArestaRetorno(Vertice vertice)
-        {
-            vertice.cor = "CINZA";
-
-            foreach (var aresta in vertice.adjacentes)
-            {
-                if (aresta.vertice.cor == "BRANCO")
-                {
-                    hasArestaRetorno(vertice);
-                }
-
-                //Achou uma aresta de retorno, significando que o grafo tem um ciclo
-                if (aresta.vertice.cor == "CINZA")
-                {
-                    return true;
-                }
-            }
-
-            vertice.cor = "PRETO";
-
-            return false;
-        }
-
-        protected void LimparCorVertices()
-        {
-            foreach (Vertice vertice in vertices)
-            {
-                vertice.cor = "BRANCO";
-            }
-
-        }
-
         //Sarah
         public bool isEuleriano()
         {
@@ -180,8 +147,7 @@ namespace Grafos
 
         //Sarah
         public Grafo getComplementar()
-        {
-            int vAtual = 0;
+        {            
 
             Vertice[] verticesGrafoComplementar = new Vertice[NumeroVertices()];
 
