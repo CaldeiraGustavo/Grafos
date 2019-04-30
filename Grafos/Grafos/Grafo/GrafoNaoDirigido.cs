@@ -36,14 +36,13 @@ namespace Grafos
 
         public bool isIsolado(Vertice v1)
         {
-            if (v1.adjacentes.Count() == 0) { return true; }
-            return false;
+            return v1.adjacentes.Count() == 0;
         }
         // Pendentes são vertices que possuem somente uma aresta adjacente
         public bool isPendente(Vertice v1)
         {
-            if (v1.adjacentes.Count() == 1) { return true; }
-            return false;
+            return v1.adjacentes.Count() == 1;
+            
         }
 
         // Vertice Regular -> Todos os vétices tem o mesmo grau
