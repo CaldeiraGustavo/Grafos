@@ -15,16 +15,11 @@ namespace Grafos
 
         public bool isAdjacente(Vertice v1, Vertice v2)
         {
-            foreach (Vertice vertice in vertices)
+            foreach (Aresta a in v1.adjacentes)
             {
-                if (vertice == v1)
-                {
-                    foreach (Aresta a in v1.adjacentes)
-                    {
-                        if (a.vertice == v2) { return true; }
-                    }
-                }
+                if (a.vertice == v2) { return true; }
             }
+
             return false;
         }
 
@@ -36,17 +31,15 @@ namespace Grafos
 
         public bool isIsolado(Vertice v1)
         {
-            if (v1.adjacentes.Count() == 0) { return true; }
-            return false;
+            return this.getGrau(v1) == 0;
         }
         // Pendentes são vertices que possuem somente uma aresta adjacente
         public bool isPendente(Vertice v1)
         {
-            if (v1.adjacentes.Count() == 1) { return true; }
-            return false;
+            return this.getGrau(v1) == 1;
         }
 
-        // Vertice Regular -> Todos os vétices tem o mesmo grau
+        // Vertice Regular -> Todos os vértices tem o mesmo grau
         public bool isRegular()
         {
             int grau = vertices[0].adjacentes.Count();
@@ -62,7 +55,7 @@ namespace Grafos
         {
             foreach (Vertice vertice in vertices)
             {
-                if (vertice.adjacentes.Count() != 0) { return false; }
+                if (this.getGrau(vertice) != 0) { return false; }
             }
             return true;
         }
@@ -158,8 +151,8 @@ namespace Grafos
                 }
             }
 
-            //O grafo é Unicursal se 2k vértices possuem grau impar
-            if (verticesGrauImpar % 2 == 0)
+            //O grafo é Unicursal se 2 vértices possuem grau impar
+            if (verticesGrauImpar == 2)
             {
                 return true;
             }
@@ -222,7 +215,7 @@ namespace Grafos
         public int getCutVertices()
         {
             return 0;
-        }        
+        }
 
     }
 }
