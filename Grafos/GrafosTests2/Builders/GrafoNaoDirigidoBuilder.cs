@@ -55,7 +55,7 @@ namespace GrafosTests2
 
         public GrafoNaoDirigidoBuilder GrafoNaoUnicursal()
         {
-            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\NaoConexo.txt");
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Conexo,Completo,NaoEuleriano,NaoUnicursal.txt");
             return this;
         }
 
