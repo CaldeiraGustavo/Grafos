@@ -31,22 +31,22 @@ namespace Grafos
 
         public bool isIsolado(Vertice v1)
         {
-            return this.getGrau(v1) == 0;
+            return v1.adjacentes.Count() == 0;
         }
+        
+        
         // Pendentes são vertices que possuem somente uma aresta adjacente
         public bool isPendente(Vertice v1)
         {
-            return this.getGrau(v1) == 1;
+            return v1.adjacentes.Count() == 1;
         }
 
         // Vertice Regular -> Todos os vértices tem o mesmo grau
         public bool isRegular()
         {
-            int grau = vertices[0].adjacentes.Count();
-
-            foreach (Vertice vertice in vertices)
+            for (int i = 1; i<vertices.Length; i++)
             {
-                if (grau != vertice.adjacentes.Count()) { return false; }
+                if (vertices[0].adjacentes.Count() != vertices[i].adjacentes.Count()) { return false; }
             }
             return true;
         }

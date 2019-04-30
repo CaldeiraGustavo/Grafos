@@ -11,6 +11,18 @@ namespace GrafosTests2
     [TestClass()]
     public class GrafoNaoDirigidoTests
     {
+
+        // Testes Willianna
+        [TestMethod()]
+        public void isRegular()
+        {
+            GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
+            .Regular()
+            .Build();
+
+            Assert.AreEqual(grafo.isRegular(), true);
+        }
+
         [TestMethod()]
         public void isCompletoTest()
         {

@@ -16,6 +16,12 @@ namespace GrafosTests2
 
         }
 
+        public GrafoNaoDirigidoBuilder Regular()
+        {
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Regular.txt");
+            return this;
+        }
+        
         public GrafoNaoDirigidoBuilder GrafoEuleriano()
         {
             this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Conexo,Completo,Euleriano,Unicursal.txt");
