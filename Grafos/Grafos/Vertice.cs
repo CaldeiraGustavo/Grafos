@@ -38,5 +38,21 @@ namespace Grafos
             adjacentes.Remove(arestaRetirar);
         }
 
+
+        public Aresta ArestaMenorPeso()
+        {
+            Aresta arestaMenorPeso = null;
+            int menor = 1000;
+
+            foreach (Aresta aresta in adjacentes)
+            {
+                if ((!aresta.visitada) && (aresta.peso < menor))
+                {
+                    menor = aresta.peso;
+                    arestaMenorPeso = aresta;
+                }
+            }
+            return arestaMenorPeso;
+        }
     }
 }

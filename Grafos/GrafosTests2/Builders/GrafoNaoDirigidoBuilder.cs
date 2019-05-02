@@ -16,6 +16,12 @@ namespace GrafosTests2
 
         }
 
+        public GrafoNaoDirigidoBuilder AGMKruskal()
+        {
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Kruskal.txt");
+            return this;
+        }
+
         public GrafoNaoDirigidoBuilder Regular()
         {
             this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Regular.txt");

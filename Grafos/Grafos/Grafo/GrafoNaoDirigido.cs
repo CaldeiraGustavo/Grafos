@@ -201,37 +201,50 @@ namespace Grafos
             return new GrafoNaoDirigido(verts);
         }
 
-        private Grafo gerarGrafoNulo() {
+        //private Grafo gerarGrafoNulo() {
 
-        }
+        //}
 
-        //Aguardando a disponibilação do slide
-        public Grafo getAGMPrim(Vertice v1)
+        ////Aguardando a disponibilação do slide
+        //public Grafo getAGMPrim(Vertice v1)
+        //{
+        //    int menor = 10000;
+        //    int vertice;
+
+
+
+
+        //}
+
+        //private void visitaPrim(Vertice v) {
+
+        //    foreach (Aresta aresta in v.adjacentes) {
+
+        //        if (aresta.peso < menor) {
+        //            menor = aresta.peso;
+        //            vertice = aresta.vertice.id;
+        //        }
+        //    }
+
+        //}
+
+        public bool Kruskal()
         {
-            int menor = 10000;
-            int vertice;
+            Kruskal kruskal = new Kruskal(vertices);
 
-            
+            kruskal.getAGMKruskal();
 
-            
+
+            return true;
         }
 
-        private void visitaPrim(Vertice v) {
+       
 
-            foreach (Aresta aresta in v.adjacentes) {
 
-                if (aresta.peso < menor) {
-                    menor = aresta.peso;
-                    vertice = aresta.vertice.id;
-                }
-            }
+       
 
-        }
-
-        public Grafo getAGMKruskal(Vertice v1)
-        {
-            return null;
-        }
+        
+       
 
         public int getCutVertices()
         {

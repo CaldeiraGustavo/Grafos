@@ -47,6 +47,7 @@
     <Compile Include="Grafo\Grafo.cs" />
     <Compile Include="Grafo\GrafoDirigido.cs" />
     <Compile Include="Grafo\GrafoNaoDirigido.cs" />
+    <Compile Include="Kruskal.cs" />
     <Compile Include="LeituraArquivo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
