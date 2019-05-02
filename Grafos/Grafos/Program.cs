@@ -10,6 +10,13 @@ namespace Grafos
     {
         static void Main(string[] args)
         {
+
+            GrafoNaoDirigido g = LeituraArquivo.GrafoNaoDirigido(@"..\..\..\GrafosTests2\txts\NaoDirigido\PrimEsperado.txt");
+
+            g.Imprimir();
+
+            Console.ReadKey();
+
         }
     }
 }

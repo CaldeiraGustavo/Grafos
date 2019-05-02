@@ -33,8 +33,8 @@ namespace Grafos
         {
             return v1.adjacentes.Count() == 0;
         }
-        
-        
+
+
         // Pendentes são vertices que possuem somente uma aresta adjacente
         public bool isPendente(Vertice v1)
         {
@@ -44,7 +44,7 @@ namespace Grafos
         // Vertice Regular -> Todos os vértices tem o mesmo grau
         public bool isRegular()
         {
-            for (int i = 1; i<vertices.Length; i++)
+            for (int i = 1; i < vertices.Length; i++)
             {
                 if (vertices[0].adjacentes.Count() != vertices[i].adjacentes.Count()) { return false; }
             }
@@ -179,12 +179,7 @@ namespace Grafos
 
         private Grafo GerarGrafoCompleto()
         {
-            Vertice[] verts = new Vertice[NumeroVertices()];
-
-            for (int i = 0; i < verts.Length; i++)
-            {
-                verts[i] = new Vertice(i + 1);
-            }
+            Vertice[] verts = this.gerarGrafoNulo();
 
             for (int i = 0; i < verts.Length; i++)
             {
@@ -201,32 +196,30 @@ namespace Grafos
             return new GrafoNaoDirigido(verts);
         }
 
-        //private Grafo gerarGrafoNulo() {
+        public Vertice[] gerarGrafoNulo()
+        {
+            Vertice[] verts = new Vertice[NumeroVertices()];
 
-        //}
+            for (int i = 0; i < verts.Length; i++)
+            {
+                verts[i] = new Vertice(i + 1);
+            }
 
-        ////Aguardando a disponibilação do slide
-        //public Grafo getAGMPrim(Vertice v1)
-        //{
-        //    int menor = 10000;
-        //    int vertice;
+            return verts;
+        }
 
+        public Grafo getAGMPrim(Vertice v1)
+        {
+            this.LimparCorVertices();
 
+            return Prim.execute(v1, this);
+        }
 
-
-        //}
-
-        //private void visitaPrim(Vertice v) {
-
-        //    foreach (Aresta aresta in v.adjacentes) {
-
-        //        if (aresta.peso < menor) {
-        //            menor = aresta.peso;
-        //            vertice = aresta.vertice.id;
-        //        }
-        //    }
-
-        //}
+        public void adicionarAresta(int idVertice1, int idVertice2, int peso)
+        {
+            vertices[idVertice1 - 1].AddVerticeAdjacente(vertices[idVertice2 - 1], peso);
+            vertices[idVertice2 - 1].AddVerticeAdjacente(vertices[idVertice1 - 1], peso);
+        }
 
         public bool Kruskal()
         {
@@ -238,17 +231,23 @@ namespace Grafos
             return true;
         }
 
-       
-
-
-       
-
-        
-       
 
         public int getCutVertices()
         {
             return 0;
+        }
+
+        public void Imprimir()
+        {
+            Console.WriteLine("Numero de vértices: " + NumeroVertices());
+
+            foreach (Vertice v in vertices)
+            {
+                foreach (Aresta a in v.adjacentes)
+                {
+                    Console.WriteLine("O vertice " + v.id + " se liga ao vertice " + a.vertice.id + " com peso " + a.peso);
+                }
+            }
         }
 
     }

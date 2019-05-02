@@ -83,6 +83,18 @@ namespace GrafosTests2
             return this;
         }
 
+        public GrafoNaoDirigidoBuilder Prim()
+        {
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Prim.txt");
+            return this;
+        }
+
+        public GrafoNaoDirigidoBuilder PrimEsperado()
+        {
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\PrimEsperado.txt");
+            return this;
+        }
+
 
         public GrafoNaoDirigido Build()
         {

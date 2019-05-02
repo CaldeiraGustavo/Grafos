@@ -9,7 +9,7 @@ namespace Grafos
 {
     public static class LeituraArquivo
     {
-        public static Grafo GrafoNaoDirigido(String nomeArquivo)
+        public static GrafoNaoDirigido GrafoNaoDirigido(String nomeArquivo)
         {
             String s;
             String[] aux;
@@ -52,7 +52,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new GrafoNaoDirigido(VerticesPendentes(vertices));
+                GrafoNaoDirigido grafo = new GrafoNaoDirigido(VerticesPendentes(vertices));
 
                 arquivoGrafo.Close();
 
@@ -87,7 +87,7 @@ namespace Grafos
             return vertices;
         }
 
-        public static Grafo GrafoDirigido(String nomeArquivo)
+        public static GrafoDirigido GrafoDirigido(String nomeArquivo)
         {
             String s;
             String[] aux;
@@ -140,7 +140,7 @@ namespace Grafos
 
                 }
 
-                Grafo grafo = new GrafoDirigido(VerticesPendentes(vertices));
+                GrafoDirigido grafo = new GrafoDirigido(VerticesPendentes(vertices));
 
                 arquivoGrafo.Close();
 

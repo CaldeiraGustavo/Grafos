@@ -12,15 +12,15 @@ namespace GrafosTests2
     public class GrafoNaoDirigidoTests
     {
 
-        [TestMethod()]
-        public void Kruskal()
-        {
-            GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
-            .AGMKruskal()
-            .Build();
+        //[TestMethod()]
+        //public void Kruskal()
+        //{
+        //    GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
+        //    .AGMKruskal()
+        //    .Build();
 
-            Assert.AreEqual(grafo.Kruskal(), true);
-        }
+        //    Assert.AreEqual(grafo.Kruskal(), true);
+        //}
 
 
         // Testes Willianna
@@ -129,6 +129,24 @@ namespace GrafosTests2
 
             Assert.AreEqual(expected, true);            
         }
+
+        [TestMethod()]
+        public void getAGMPrimTest()
+        {
+            GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
+               .Prim()
+               .Build();
+
+            GrafoNaoDirigido grafoEsperado = new GrafoNaoDirigidoBuilder()
+               .PrimEsperado()
+               .Build();
+
+            Vertice v1 = grafo.vertices[0];
+
+            bool expected = grafo.getAGMPrim(v1).Equals(grafoEsperado);
+
+            Assert.AreEqual(expected, true);
+        }        
 
 
     }
