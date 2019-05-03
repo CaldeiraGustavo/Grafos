@@ -49,11 +49,30 @@ namespace Grafos
             {
                 foreach (Aresta aresta in v.adjacentes)
                 {
-                    if (aresta.peso < peso && aresta.vertice.cor == "BRANCO")
+                    if (aresta.peso <= peso && aresta.vertice.cor == "BRANCO")
                     {
-                        peso = aresta.peso;
-                        arestaSelecionada = aresta;
-                        vOrigem = v;
+                        if (aresta.peso == peso) {
+                            
+                            if ((vOrigem.id + arestaSelecionada.vertice.id) <= (v.id + aresta.vertice.id)) {
+                                
+                                if ((vOrigem.id + arestaSelecionada.vertice.id) == (v.id + aresta.vertice.id)) {
+                                    
+                                }
+                                
+                            }
+                            else {
+                                peso = aresta.peso;
+                                arestaSelecionada = aresta;
+                                vOrigem = v;                        
+                        }
+                            
+                        }                        
+                        else {
+                            peso = aresta.peso;
+                            arestaSelecionada = aresta;
+                            vOrigem = v;                        
+                        }
+                        
                     }
 
                 }
