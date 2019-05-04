@@ -221,13 +221,11 @@ namespace Grafos
             vertices[idVertice2 - 1].AddVerticeAdjacente(vertices[idVertice1 - 1], peso);
         }
 
-        public bool Kruskal()
+        public bool AGM()
         {
-            Kruskal kruskal = new Kruskal(vertices);
 
-            kruskal.getAGMKruskal();
-
-
+            Kruskal.execute(this);
+        
             return true;
         }
 

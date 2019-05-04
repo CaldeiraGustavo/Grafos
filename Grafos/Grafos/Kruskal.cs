@@ -6,86 +6,117 @@ using System.Threading.Tasks;
 
 namespace Grafos
 {
-    public class Kruskal : GrafoNaoDirigido
+    public static class Kruskal
     {
-        public List<Vertice> AGM { get; set; }
 
-        public Kruskal(Vertice[] vertices) : base(vertices)
+
+        
+        private static GrafoNaoDirigido arvore;
+        private static Vertice verticeOrigem;
+        private static GrafoNaoDirigido grafoOrigem;
+
+
+        public static Grafo execute(GrafoNaoDirigido grafo)
         {
-
-        }
-
-
-
-        public void AdicionarLista(Vertice vertice)
-        {
-
-        }
+            grafoOrigem = new GrafoNaoDirigido(grafo.vertices);
+            arvore = new GrafoNaoDirigido(grafo.gerarGrafoNulo());
 
 
-        public void getAGMKruskal()
-        {
-            int numArestas = 0;
-            Vertice novo = new Vertice(0);
-            Vertice v;
+            Aresta aresta = FindArestaMenorPeso();
 
-            while (numArestas < vertices.Length - 1)
+            while (aresta != null)
             {
-                v = MenorArestaGrafo();
-                Aresta aresta = v.ArestaMenorPeso();
-                aresta.visitada = true;
-                novo.adjacentes.Add(aresta);
-                AdicionarLista(novo);
-
-                aresta = ArestaRetorno(v, aresta.vertice);
-
-                if (aresta != null)
+                if (!HasCiclo(verticeOrigem, aresta))
                 {
-                    aresta.visitada = true;
+                    arvore.adicionarAresta(verticeOrigem.id, aresta.vertice.id, aresta.peso);
                 }
-                numArestas++;
 
+                RemoveArestaGrafoCompleto(verticeOrigem, aresta);
 
+                aresta = FindArestaMenorPeso();
             }
 
-        }
+            return arvore;
 
-        private Vertice MenorArestaGrafo()
-        {
-            Vertice verPesoMin = vertices[0];
-            Aresta arestaMenorPeso = vertices[0].ArestaMenorPeso();
-
-            for (int j = 1; j < vertices.Length; j++)
-            {
-                if (vertices[j].ArestaMenorPeso().peso < arestaMenorPeso.peso)
-                {
-                    verPesoMin = vertices[j];
-                }
-            }
-
-            return verPesoMin;
         }
 
 
-        private Aresta ArestaRetorno(Vertice v1, Vertice v2)
+        // Busca a aresta de menor peso
+        private static Aresta FindArestaMenorPeso()
         {
-            foreach (Aresta a1 in v1.adjacentes)
+            int pesoMenor = 1000;
+            Aresta arestaMenorPeso = null;
+
+            InicializarVertices(grafoOrigem);
+
+            foreach (Vertice vertice in grafoOrigem.vertices)
             {
-                foreach (Aresta a2 in v2.adjacentes)
+                foreach (Aresta aresta in vertice.adjacentes)
                 {
-                    if ((!a1.visitada) && (!a2.visitada) && (a1.vertice.id == a2.vertice.id))
+                    if ((aresta.peso < pesoMenor) && (aresta.vertice.cor == "BRANCO"))
                     {
-                        return a2;
+                        pesoMenor = aresta.peso;
+                        arestaMenorPeso = aresta;
+                        verticeOrigem = vertice;
                     }
                 }
+                vertice.cor = "VERDE";
             }
-
-            return null;
+            
+            return arestaMenorPeso;
         }
 
 
 
+        private static void InicializarVertices(Grafo grafo)
+        {
+            foreach (Vertice v in grafo.vertices)
+            {
+                v.cor = "BRANCO";
+            }
+        }
 
 
+        private static bool HasCiclo(Vertice verticeOrigem, Aresta aresta)
+        {
+            InicializarVertices(arvore);
+
+            return VerificaArestaCiclo(verticeOrigem, aresta);
+        } 
+
+
+         // Para verificar se a aresta que será incluida é de ciclo e feita uma busca em profundidade
+         // percorrendo todos os vertices de origem da subArvore procurando algum vértice que tenha alguma
+         // ligação com o vértice da aresta. Se tiver possui ciclo.
+        private static bool VerificaArestaCiclo(Vertice verticeOrigem, Aresta aresta)
+        {
+            arvore.vertices[verticeOrigem.id - 1].cor = "VERDE";
+
+            if (aresta.vertice.id == verticeOrigem.id) { return true; }
+            else
+            {
+                foreach (var a in arvore.vertices[verticeOrigem.id - 1].adjacentes)
+                {
+                    if (a.vertice.cor == "BRANCO")
+                    {
+                        if(VerificaArestaCiclo(a.vertice, aresta)) { return true; }
+
+                    }
+                }
+
+                return false;
+            }
+        }
+
+
+     
+
+        private static void RemoveArestaGrafoCompleto(Vertice v1, Aresta aresta)
+        {
+            grafoOrigem.vertices[v1.id - 1].adjacentes.Remove(aresta);
+            grafoOrigem.vertices[aresta.vertice.id - 1].RemoveVerticeAdjacente(v1.id);
+           
+        }
+        
     }
 }

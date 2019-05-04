@@ -12,15 +12,15 @@ namespace GrafosTests2
     public class GrafoNaoDirigidoTests
     {
 
-        //[TestMethod()]
-        //public void Kruskal()
-        //{
-        //    GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
-        //    .AGMKruskal()
-        //    .Build();
+        [TestMethod()]
+        public void Kruskal()
+        {
+            GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
+            .AGMKruskal()
+            .Build();
 
-        //    Assert.AreEqual(grafo.Kruskal(), true);
-        //}
+            Assert.AreEqual(grafo.AGM(), true);
+        }
 
 
         // Testes Willianna
