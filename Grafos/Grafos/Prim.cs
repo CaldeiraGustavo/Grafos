@@ -11,7 +11,7 @@ namespace Grafos
         private static List<Vertice> verticesConhecidos = new List<Vertice>();
         private static Vertice vOrigem;
 
-        public static Grafo execute(Vertice origem, GrafoNaoDirigido grafo)
+        public static GrafoNaoDirigido execute(Vertice origem, GrafoNaoDirigido grafo)
         {
             GrafoNaoDirigido arvore = new GrafoNaoDirigido(grafo.gerarGrafoNulo());
 

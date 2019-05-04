@@ -81,5 +81,18 @@ namespace Grafos
 
             return false;
         }
+
+        public void Imprimir()
+        {
+            Console.WriteLine(NumeroVertices());
+
+            foreach (Vertice v in vertices)
+            {
+                foreach (Aresta a in v.adjacentes)
+                {
+                    Console.WriteLine(v.id + "; " + a.vertice.id + "; " + a.peso + "; 1");
+                }
+            }
+        }
     }
 }
