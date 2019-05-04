@@ -31,14 +31,14 @@ namespace Grafos
 
         public bool isIsolado(Vertice v1)
         {
-            return v1.adjacentes.Count() == 0;
+            return getGrau(v1) == 0;
         }
 
 
         // Pendentes são vertices que possuem somente uma aresta adjacente
         public bool isPendente(Vertice v1)
         {
-            return v1.adjacentes.Count() == 1;
+            return getGrau(v1) == 1;
         }
 
         // Vertice Regular -> Todos os vértices tem o mesmo grau
@@ -46,7 +46,7 @@ namespace Grafos
         {
             for (int i = 1; i < vertices.Length; i++)
             {
-                if (vertices[0].adjacentes.Count() != vertices[i].adjacentes.Count()) { return false; }
+                if (getGrau(vertices[0]) != getGrau(vertices[i])) { return false; }
             }
             return true;
         }
@@ -159,10 +159,10 @@ namespace Grafos
             else { return false; }
         }
 
-        public Grafo getComplementar()
+        public GrafoNaoDirigido getComplementar()
         {
             //Gera um grafo completo
-            Grafo grafoComplementar = this.GerarGrafoCompleto();
+            GrafoNaoDirigido grafoComplementar = this.GerarGrafoCompleto();
 
             //Percorre todos os vertices e retira do grafo completo as arestas que existem no grafo original,
             //Resultando em seu grafo complementar.
@@ -177,7 +177,7 @@ namespace Grafos
             return grafoComplementar;
         }
 
-        private Grafo GerarGrafoCompleto()
+        private GrafoNaoDirigido GerarGrafoCompleto()
         {
             Vertice[] verts = this.gerarGrafoNulo();
 
@@ -208,7 +208,7 @@ namespace Grafos
             return verts;
         }
 
-        public Grafo getAGMPrim(Vertice v1)
+        public GrafoNaoDirigido getAGMPrim(Vertice v1)
         {
             this.LimparCorVertices();
 
@@ -237,14 +237,46 @@ namespace Grafos
 
         public void Imprimir()
         {
-            Console.WriteLine("Numero de vértices: " + NumeroVertices());
+            List<ParVertices> verts = new List<ParVertices>();
+
+            Console.WriteLine(NumeroVertices());
 
             foreach (Vertice v in vertices)
             {
                 foreach (Aresta a in v.adjacentes)
                 {
-                    Console.WriteLine("O vertice " + v.id + " se liga ao vertice " + a.vertice.id + " com peso " + a.peso);
+                    if (!existParVertices(verts, v.id, a.vertice.id))
+                    {
+                        verts.Add(new ParVertices(v.id, a.vertice.id));
+                        Console.WriteLine(v.id + "; " + a.vertice.id + "; " + a.peso);
+                    }
+
                 }
+            }
+        }
+
+        private bool existParVertices(List<ParVertices> verts, int v1, int v2)
+        {
+            foreach (ParVertices p in verts)
+            {
+                if (p.v1 == v2 && p.v2 == v1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private class ParVertices
+        {
+            public int v1;
+            public int v2;
+
+            public ParVertices(int v1, int v2)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
             }
         }
 
