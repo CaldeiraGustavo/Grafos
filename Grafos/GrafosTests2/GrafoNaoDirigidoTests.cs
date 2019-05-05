@@ -26,10 +26,16 @@ namespace GrafosTests2
         public void Kruskal()
         {
             GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
-            .AGMKruskal()
-            .Build();
+               .Prim()
+               .Build();
 
-            Assert.AreEqual(grafo.getAGMKruskal(), true);
+            GrafoNaoDirigido grafoEsperado = new GrafoNaoDirigidoBuilder()
+               .PrimEsperado()
+               .Build();
+
+            bool expected = grafo.getAGMKruskal().Equals(grafoEsperado);
+
+            Assert.AreEqual(expected, true);
         }
 
 

@@ -8,7 +8,6 @@ namespace Grafos
 {
     static class TARJAN
     {
-
         public static int execute(Grafo grafo)
         {
 
@@ -34,7 +33,6 @@ namespace Grafos
             return CountPontoArticulacao(grafo);
 
         }
-
 
         private static void Tarjan(Vertice v, Vertice verticeOrigem, int time, ref int cont)
         {
@@ -70,7 +68,6 @@ namespace Grafos
             return Math.Min(val1, val2);
         }
 
-
         private static int CountPontoArticulacao(Grafo g)
         {
             int cont = 0;
@@ -85,10 +82,9 @@ namespace Grafos
             return cont;
         }
 
-
         private static void InicializarPontosArticulacao(Grafo grafo)
         {
-            foreach( Vertice v in grafo.vertices)
+            foreach (Vertice v in grafo.vertices)
             {
                 v.pontoArticulacao = false;
             }
@@ -100,5 +96,5 @@ namespace Grafos
 
 
 
-   
+
 }

@@ -53,7 +53,7 @@ namespace Grafos
                     {
                         if (aresta.peso == peso)
                         {
-                            Aresta arestaEscolhida = ArestasComMesmoPeso(arestaSelecionada, aresta, v,vOrigem);
+                            Aresta arestaEscolhida = ArestasComMesmoPeso(arestaSelecionada, vOrigem, aresta, v);
 
                             peso = arestaEscolhida.peso;
                             arestaSelecionada = arestaEscolhida;
@@ -63,8 +63,8 @@ namespace Grafos
                             peso = aresta.peso;
                             arestaSelecionada = aresta;
                             vOrigem = v;
-                        }                                  
-                        
+                        }
+
                     }
 
                 }
@@ -73,33 +73,33 @@ namespace Grafos
             return arestaSelecionada;
         }
 
-        public static Aresta ArestasComMesmoPeso(Aresta arestaAtual, Aresta arestaOutra, Vertice v,Vertice vOrigem)
+        public static Aresta ArestasComMesmoPeso(Aresta aresta1, Vertice vertice1, Aresta aresta2, Vertice vertice2)
         {
-            if ((vOrigem.id + arestaAtual.vertice.id) >= (v.id + arestaOutra.vertice.id))
-            {                
-                vOrigem = v;
-                return arestaOutra;
+            if ((vertice1.id + aresta1.vertice.id) >= (vertice2.id + aresta2.vertice.id))
+            {
+                vOrigem = vertice2;
+                return aresta2;
             }
             else
             {
-                if ((vOrigem.id + arestaAtual.vertice.id) == (v.id + arestaOutra.vertice.id))
+                if ((vertice1.id + aresta1.vertice.id) == (vertice2.id + aresta2.vertice.id))
                 {
-                    int indice1 = Math.Min(vOrigem.id, arestaAtual.vertice.id);
-                    int indice2 = Math.Min(v.id, arestaOutra.vertice.id);
+                    int indice1 = Math.Min(vertice1.id, aresta1.vertice.id);
+                    int indice2 = Math.Min(vertice2.id, aresta2.vertice.id);
 
                     if (indice2 < indice1)
                     {
-                        vOrigem = v;
-                        return arestaOutra;                        
+                        vOrigem = vertice2;
+                        return aresta2;
                     }
                     else
                     {
-                        return arestaAtual;
-                    }                       
+                        return aresta1;
+                    }
 
                 }
 
-                return arestaAtual;
+                return aresta1;
             }
         }
     }

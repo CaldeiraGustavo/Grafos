@@ -11,12 +11,10 @@ namespace Grafos
         static void Main(string[] args)
         {
 
-            GrafoNaoDirigido g1 = LeituraArquivo.GrafoNaoDirigido(@"..\..\..\GrafosTests2\txts\NaoDirigido\NaoConexo.txt");
+            GrafoNaoDirigido g1 = LeituraArquivo.GrafoNaoDirigido(@"..\..\..\GrafosTests2\txts\NaoDirigido\Prim.txt");
 
             GrafoDirigido gDirigido = LeituraArquivo.GrafoDirigido(@"..\..\..\GrafosTests2\txts\Dirigido\SemCiclo.txt");
-
             
-
             Console.WriteLine("São adjacentes: " + g1.isAdjacente(g1.vertices[0], g1.vertices[1]));
             Console.WriteLine("Grau: " + g1.getGrau(g1.vertices[0]));
             Console.WriteLine("É isolado: " + g1.isIsolado(g1.vertices[0]));

@@ -8,19 +8,14 @@ namespace Grafos
 {
     public static class Kruskal
     {
-
-
-
         private static GrafoNaoDirigido arvore;
         private static Vertice verticeOrigem;
         private static GrafoNaoDirigido grafoOrigem;
-
 
         public static GrafoNaoDirigido execute(GrafoNaoDirigido grafo)
         {
             grafoOrigem = new GrafoNaoDirigido(grafo.vertices);
             arvore = new GrafoNaoDirigido(grafo.gerarGrafoNulo());
-
 
             Aresta aresta = FindArestaMenorPeso();
 
@@ -36,11 +31,8 @@ namespace Grafos
                 aresta = FindArestaMenorPeso();
             }
 
-          
             return arvore;
-
         }
-
 
         // Busca a aresta de menor peso
         private static Aresta FindArestaMenorPeso()
@@ -58,7 +50,7 @@ namespace Grafos
                     {
                         if (aresta.peso == pesoMenor)
                         {
-                            Aresta arestaEscolhida = Prim.ArestasComMesmoPeso(arestaMenorPeso, aresta, vertice, verticeOrigem);
+                            Aresta arestaEscolhida = Prim.ArestasComMesmoPeso(arestaMenorPeso, verticeOrigem, aresta, vertice);
                             pesoMenor = arestaEscolhida.peso;
                             arestaMenorPeso = arestaEscolhida;
                         }
@@ -76,9 +68,6 @@ namespace Grafos
 
             return arestaMenorPeso;
         }
-
-
-
 
         private static bool HasCiclo(Vertice verticeOrigem, Aresta aresta)
         {
@@ -111,18 +100,12 @@ namespace Grafos
             }
         }
 
-
-
-
         private static void RemoveArestaGrafoCompleto(Vertice v1, Aresta aresta)
         {
             grafoOrigem.vertices[v1.id - 1].adjacentes.Remove(aresta);
             grafoOrigem.vertices[aresta.vertice.id - 1].RemoveVerticeAdjacente(v1.id);
 
         }
-
-
-       
 
     }
 }
