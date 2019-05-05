@@ -8,17 +8,26 @@ namespace Grafos
 {
     static class TARJAN
     {
+
         public static int execute(Grafo grafo)
         {
 
+            int cont = 0;
+            InicializarPontosArticulacao(grafo);
             grafo.LimparCorVertices();
-
 
             foreach (Vertice v in grafo.vertices)
             {
                 if (v.cor == "BRANCO")
                 {
-                    Tarjan(v, v, 0, 0);
+                    Tarjan(v, v, 0, ref cont);
+
+                    if (cont >= 2)
+                    {
+                        v.pontoArticulacao = true;
+                    }
+                    else { v.pontoArticulacao = false; }
+
                 }
             }
 
@@ -27,9 +36,8 @@ namespace Grafos
         }
 
 
-        private static void Tarjan(Vertice v, Vertice verticeOrigem, int time, int cont)
+        private static void Tarjan(Vertice v, Vertice verticeOrigem, int time, ref int cont)
         {
-
             time += 1;
             v.tempoDescoberta = v.m = time;
             v.cor = "CINZA";
@@ -42,7 +50,7 @@ namespace Grafos
 
                     if (v.id == verticeOrigem.id) { cont += 1; }
 
-                    Tarjan(a.vertice, verticeOrigem, time, cont);
+                    Tarjan(a.vertice, verticeOrigem, time, ref cont);
 
                     if (a.vertice.m >= v.tempoDescoberta) { v.pontoArticulacao = true; }
 
@@ -57,12 +65,10 @@ namespace Grafos
             v.cor = "PRETO";
         }
 
-
         private static int Min(int val1, int val2)
         {
             return Math.Min(val1, val2);
         }
-
 
 
         private static int CountPontoArticulacao(Grafo g)
@@ -77,6 +83,15 @@ namespace Grafos
             }
 
             return cont;
+        }
+
+
+        private static void InicializarPontosArticulacao(Grafo grafo)
+        {
+            foreach( Vertice v in grafo.vertices)
+            {
+                v.pontoArticulacao = false;
+            }
         }
 
     }

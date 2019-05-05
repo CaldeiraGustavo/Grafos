@@ -15,7 +15,7 @@ namespace Grafos
 
             GrafoDirigido gDirigido = LeituraArquivo.GrafoDirigido(@"..\..\..\GrafosTests2\txts\Dirigido\SemCiclo.txt");
 
-            GrafoNaoDirigido Kruskal = LeituraArquivo.GrafoNaoDirigido(@"..\..\..\GrafosTests2\txts\NaoDirigido\Kruskal.txt");
+            
 
             Console.WriteLine("São adjacentes: " + g1.isAdjacente(g1.vertices[0], g1.vertices[1]));
             Console.WriteLine("Grau: " + g1.getGrau(g1.vertices[0]));
@@ -32,7 +32,7 @@ namespace Grafos
             Console.WriteLine("Arvore Geradora Prim: ");
             g1.getAGMPrim(g1.vertices[0]).Imprimir();
             Console.WriteLine("Arvore Geradora Kruskal");
-            Kruskal.getAGMKruskal().Imprimir();
+            g1.getAGMKruskal().Imprimir();
 
 
             Console.ReadKey();
