@@ -25,6 +25,7 @@ namespace Grafos
             Console.WriteLine("É nulo: " + g1.isNulo());
             Console.WriteLine("Completo: " + g1.isCompleto());
             Console.WriteLine("É conexo: " + g1.isConexo());
+            Console.WriteLine("Numero de Cut Vértice: " + g1.getCutVertices());
             Console.WriteLine("É Euleriano: " + g1.isEuleriano());
             Console.WriteLine("É Unicursal: " + g1.isUnicursal());
             Console.WriteLine("Grafo Complementar: ");

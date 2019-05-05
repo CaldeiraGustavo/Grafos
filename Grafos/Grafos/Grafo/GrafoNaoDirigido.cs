@@ -230,7 +230,12 @@ namespace Grafos
 
         public int getCutVertices()
         {
-            return TARJAN.execute(this);
+            if (isConexo())
+            {
+                return TARJAN.execute(this);
+            }
+            else { return 0; }
+            
         }
 
         
