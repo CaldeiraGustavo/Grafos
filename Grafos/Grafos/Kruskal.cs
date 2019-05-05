@@ -16,7 +16,7 @@ namespace Grafos
         private static GrafoNaoDirigido grafoOrigem;
 
 
-        public static Grafo execute(GrafoNaoDirigido grafo)
+        public static GrafoNaoDirigido execute(GrafoNaoDirigido grafo)
         {
             grafoOrigem = new GrafoNaoDirigido(grafo.vertices);
             arvore = new GrafoNaoDirigido(grafo.gerarGrafoNulo());

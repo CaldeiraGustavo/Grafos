@@ -221,12 +221,10 @@ namespace Grafos
             vertices[idVertice2 - 1].AddVerticeAdjacente(vertices[idVertice1 - 1], peso);
         }
 
-        public bool AGM()
+        public GrafoNaoDirigido AGM()
         {
-
-            Kruskal.execute(this);
-        
-            return true;
+            this.LimparCorVertices();
+            return Kruskal.execute(this);
         }
 
 
