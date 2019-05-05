@@ -10,7 +10,7 @@ namespace Grafos
     {
 
 
-        
+
         private static GrafoNaoDirigido arvore;
         private static Vertice verticeOrigem;
         private static GrafoNaoDirigido grafoOrigem;
@@ -36,6 +36,7 @@ namespace Grafos
                 aresta = FindArestaMenorPeso();
             }
 
+          
             return arvore;
 
         }
@@ -66,13 +67,13 @@ namespace Grafos
                             pesoMenor = aresta.peso;
                             arestaMenorPeso = aresta;
                             verticeOrigem = vertice;
-                        }                      
+                        }
                     }
-                    
+
                 }
                 vertice.cor = "VERDE";
             }
-            
+
             return arestaMenorPeso;
         }
 
@@ -84,12 +85,12 @@ namespace Grafos
             arvore.LimparCorVertices();
 
             return VerificaArestaCiclo(verticeOrigem, aresta);
-        } 
+        }
 
 
-         // Para verificar se a aresta que será incluida é de ciclo e feita uma busca em profundidade
-         // percorrendo todos os vertices de origem da subArvore procurando algum vértice que tenha alguma
-         // ligação com o vértice da aresta. Se tiver possui ciclo.
+        // Para verificar se a aresta que será incluida é de ciclo e feita uma busca em profundidade
+        // percorrendo todos os vertices de origem da subArvore procurando algum vértice que tenha alguma
+        // ligação com o vértice da aresta. Se tiver possui ciclo.
         private static bool VerificaArestaCiclo(Vertice verticeOrigem, Aresta aresta)
         {
             arvore.vertices[verticeOrigem.id - 1].cor = "VERDE";
@@ -101,7 +102,7 @@ namespace Grafos
                 {
                     if (a.vertice.cor == "BRANCO")
                     {
-                        if(VerificaArestaCiclo(a.vertice, aresta)) { return true; }
+                        if (VerificaArestaCiclo(a.vertice, aresta)) { return true; }
 
                     }
                 }
@@ -111,14 +112,17 @@ namespace Grafos
         }
 
 
-     
+
 
         private static void RemoveArestaGrafoCompleto(Vertice v1, Aresta aresta)
         {
             grafoOrigem.vertices[v1.id - 1].adjacentes.Remove(aresta);
             grafoOrigem.vertices[aresta.vertice.id - 1].RemoveVerticeAdjacente(v1.id);
-           
+
         }
-        
+
+
+       
+
     }
 }

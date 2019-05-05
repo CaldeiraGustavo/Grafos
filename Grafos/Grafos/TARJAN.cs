@@ -22,7 +22,7 @@ namespace Grafos
                 }
             }
 
-            return CountPontoArticulacao(g);
+            return CountPontoArticulacao(grafo);
 
         }
 

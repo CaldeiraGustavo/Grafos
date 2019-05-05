@@ -29,7 +29,7 @@ namespace GrafosTests2
             .AGMKruskal()
             .Build();
 
-            Assert.AreEqual(grafo.AGM(), true);
+            Assert.AreEqual(grafo.getAGMKruskal(), true);
         }
 
 
