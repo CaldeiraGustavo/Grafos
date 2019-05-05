@@ -47,18 +47,28 @@ namespace Grafos
             int pesoMenor = 1000;
             Aresta arestaMenorPeso = null;
 
-            InicializarVertices(grafoOrigem);
+            grafoOrigem.LimparCorVertices();
 
             foreach (Vertice vertice in grafoOrigem.vertices)
             {
                 foreach (Aresta aresta in vertice.adjacentes)
                 {
-                    if ((aresta.peso < pesoMenor) && (aresta.vertice.cor == "BRANCO"))
+                    if (aresta.peso <= pesoMenor && aresta.vertice.cor == "BRANCO")
                     {
-                        pesoMenor = aresta.peso;
-                        arestaMenorPeso = aresta;
-                        verticeOrigem = vertice;
+                        if (aresta.peso == pesoMenor)
+                        {
+                            Aresta arestaEscolhida = Prim.ArestasComMesmoPeso(arestaMenorPeso, aresta, vertice, verticeOrigem);
+                            pesoMenor = arestaEscolhida.peso;
+                            arestaMenorPeso = arestaEscolhida;
+                        }
+                        else
+                        {
+                            pesoMenor = aresta.peso;
+                            arestaMenorPeso = aresta;
+                            verticeOrigem = vertice;
+                        }                      
                     }
+                    
                 }
                 vertice.cor = "VERDE";
             }
@@ -68,18 +78,10 @@ namespace Grafos
 
 
 
-        private static void InicializarVertices(Grafo grafo)
-        {
-            foreach (Vertice v in grafo.vertices)
-            {
-                v.cor = "BRANCO";
-            }
-        }
-
 
         private static bool HasCiclo(Vertice verticeOrigem, Aresta aresta)
         {
-            InicializarVertices(arvore);
+            arvore.LimparCorVertices();
 
             return VerificaArestaCiclo(verticeOrigem, aresta);
         } 

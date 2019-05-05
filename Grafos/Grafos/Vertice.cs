@@ -8,6 +8,15 @@ namespace Grafos
 
         public string cor { get; set; }
 
+        public int idSucessor { get; set; }
+
+        public int tempoDescoberta { get; set; }
+
+        public int m { get; set; }
+
+        public bool pontoArticulacao { get; set; }
+
+
         //Lisa de vértices adjacentes (Contendo o vértice e o peso da aresta)
         public List<Aresta> adjacentes { get; set; }
 

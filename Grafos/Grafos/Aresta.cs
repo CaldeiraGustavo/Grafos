@@ -10,7 +10,7 @@ namespace Grafos
     {
         public Vertice vertice { get; set; }
         public int peso { get; set; }
-        public bool visitada { get; set; } // true indica que foi visitada/ false; não foi visitada
+       
 
         public Aresta(Vertice vertice, int peso)
         {

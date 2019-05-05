@@ -16,6 +16,11 @@ namespace GrafosTests2
 
         }
 
+        public GrafoNaoDirigidoBuilder CutVertices()
+        {
+            this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\NumCutVertice.txt");
+            return this;
+        }
         public GrafoNaoDirigidoBuilder AGMKruskal()
         {
             this.grafo = LeituraArquivo.GrafoNaoDirigido(@"..\..\txts\NaoDirigido\Kruskal.txt");

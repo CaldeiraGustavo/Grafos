@@ -53,7 +53,7 @@ namespace Grafos
                     {
                         if (aresta.peso == peso)
                         {
-                            Aresta arestaEscolhida = ArestasComMesmoPeso(arestaSelecionada, aresta, v);
+                            Aresta arestaEscolhida = ArestasComMesmoPeso(arestaSelecionada, aresta, v,vOrigem);
 
                             peso = arestaEscolhida.peso;
                             arestaSelecionada = arestaEscolhida;
@@ -73,7 +73,7 @@ namespace Grafos
             return arestaSelecionada;
         }
 
-        private static Aresta ArestasComMesmoPeso(Aresta arestaAtual, Aresta arestaOutra, Vertice v)
+        public static Aresta ArestasComMesmoPeso(Aresta arestaAtual, Aresta arestaOutra, Vertice v,Vertice vOrigem)
         {
             if ((vOrigem.id + arestaAtual.vertice.id) >= (v.id + arestaOutra.vertice.id))
             {                

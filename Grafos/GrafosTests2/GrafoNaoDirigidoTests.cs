@@ -12,6 +12,16 @@ namespace GrafosTests2
     public class GrafoNaoDirigidoTests
     {
 
+        [TestMethod]
+        public void CutVertice()
+        {
+            GrafoNaoDirigido grafo = new GrafoNaoDirigidoBuilder()
+            .CutVertices()
+            .Build();
+
+            Assert.AreEqual(grafo.getCutVertices(), 6);
+        }
+
         [TestMethod()]
         public void Kruskal()
         {

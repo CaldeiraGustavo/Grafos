@@ -15,7 +15,7 @@ namespace Grafos
             this.vertices = vertices;
         }
 
-        protected void LimparCorVertices()
+        public void LimparCorVertices()
         {
             foreach (Vertice vertice in vertices)
             {

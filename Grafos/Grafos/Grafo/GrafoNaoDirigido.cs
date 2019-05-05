@@ -232,8 +232,12 @@ namespace Grafos
 
         public int getCutVertices()
         {
-            return 0;
+            return TARJAN.execute(this);
         }
+
+        
+
+        
 
         public void Imprimir()
         {
